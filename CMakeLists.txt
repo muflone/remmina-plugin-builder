@@ -30,7 +30,7 @@
 # version. If you delete this exception statement from all source
 # files in the program, then also delete it here.
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8)
 set(CMAKE_COLOR_MAKEFILE ON)
 project(Remmina C)
 
@@ -62,6 +62,9 @@ endif()
 if(CMAKE_COMPILER_IS_GNUCC)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC")
+  if(WITH_SSE2)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse2")
+  endif()
   CHECK_C_COMPILER_FLAG(-Wno-unused-result Wno-unused-result)
   if(Wno-unused-result)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-result")
@@ -83,7 +86,6 @@ check_include_files(sys/un.h HAVE_SYS_UN_H)
 check_include_files(errno.h HAVE_ERRNO_H)
 
 include_directories(.)
-include_directories(remmina/include)
 
 set(REMMINA_DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set(REMMINA_LOCALEDIR "${CMAKE_INSTALL_PREFIX}/share/locale")

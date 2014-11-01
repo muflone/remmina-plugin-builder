@@ -1,7 +1,8 @@
 #ifndef __CONFIG_H
   #define __CONFIG_H
   #cmakedefine GTK_VERSION   ${GTK_VERSION}
-  #define GETTEXT_PACKAGE    "remmina"
+  #define remmina            "remmina"
+  #define GETTEXT_PACKAGE    remmina
 
   #define REMMINA_DATADIR    "${REMMINA_DATADIR}"
   #define REMMINA_LOCALEDIR  "${REMMINA_LOCALEDIR}"
