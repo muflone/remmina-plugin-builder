@@ -1,6 +1,7 @@
 # Remmina - The GTK+ Remote Desktop Client
 #
 # Copyright (C) 2011 Marc-Andre Moreau
+# Copyright (C) 2014-2015 Antenore Gatta, Fabio Castelli, Giovanni Panozzo
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,8 +15,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, 
-# Boston, MA 02111-1307, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor,
+# Boston, MA  02110-1301, USA.
 #
 # In addition, as a special exception, the copyright holders give
 # permission to link the code of portions of this program with the
@@ -30,14 +31,18 @@
 # version. If you delete this exception statement from all source
 # files in the program, then also delete it here.
 
+
 cmake_minimum_required(VERSION 2.8)
+
 set(CMAKE_COLOR_MAKEFILE ON)
+
 project(Remmina C)
 
 include(CheckIncludeFiles)
 include(CheckLibraryExists)
 include(FindPkgConfig)
 include(CheckCCompilerFlag)
+include(GNUInstallDirs)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/)
 
@@ -45,14 +50,6 @@ include(FindOptionalPackage)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "Release")
-endif()
-
-if(NOT DEFINED CMAKE_INSTALL_LIBDIR)
-  set(CMAKE_INSTALL_LIBDIR "lib")
-endif()
-
-if(NOT DEFINED CMAKE_INSTALL_BINDIR)
-  set(CMAKE_INSTALL_BINDIR "bin")
 endif()
 
 if(NOT BUILD_SHARED_LIBS)
@@ -90,13 +87,17 @@ include_directories(.)
 set(REMMINA_DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 set(REMMINA_LOCALEDIR "${CMAKE_INSTALL_PREFIX}/share/locale")
 set(REMMINA_PLUGINDIR "${CMAKE_INSTALL_PREFIX}/lib/remmina/plugins")
+set(REMMINA_UIDIR "${CMAKE_INSTALL_PREFIX}/share/remmina/ui")
 
-find_suggested_package(PTHREAD)
-if(PTHREAD_FOUND)
-  add_definitions(-DHAVE_PTHREAD)
+set(GTK_VERSION 3)
+find_required_package(GTK)
+find_required_package(PTHREAD)
+
+if(WITH_TRACE_CALLS)
+	message(STATUS "Enabling trace calls.")
+	add_definitions(-DWITH_TRACE_CALLS)
 endif()
 
-find_required_package(GTK)
 if(GTK_FOUND)
   add_subdirectory(remmina-plugin-to-build)
 endif()
