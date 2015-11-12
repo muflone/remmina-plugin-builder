@@ -1,6 +1,7 @@
 /*
  * Remmina - The GTK+ Remote Desktop Client
  * Copyright (C) 2010-2011 Vic Lee
+ * Copyright (C) 2014-2015 Antenore Gatta, Fabio Castelli, Giovanni Panozzo
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,8 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, 
- * Boston, MA 02111-1307, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA  02110-1301, USA.
  *
  *  In addition, as a special exception, the copyright holders give
  *  permission to link the code of portions of this program with the
@@ -36,6 +37,7 @@
 #define __REMMINA_PLUGIN_H__
 
 #include <remmina/types.h>
+#include "remmina/remmina_trace_calls.h"
 
 G_BEGIN_DECLS
 
@@ -78,6 +80,7 @@ typedef struct _RemminaProtocolPlugin
     gboolean (* close_connection) (RemminaProtocolWidget *gp);
     gboolean (* query_feature) (RemminaProtocolWidget *gp, const RemminaProtocolFeature *feature);
     void (* call_feature) (RemminaProtocolWidget *gp, const RemminaProtocolFeature *feature);
+    void (* send_keystrokes) (RemminaProtocolWidget *gp, const guint keystrokes[], const gint keylen);
 } RemminaProtocolPlugin;
 
 typedef struct _RemminaEntryPlugin
@@ -168,8 +171,8 @@ typedef struct _RemminaPluginService
     gboolean     (* protocol_plugin_start_xport_tunnel)   (RemminaProtocolWidget *gp, RemminaXPortTunnelInitFunc init_func);
     void         (* protocol_plugin_set_display)          (RemminaProtocolWidget *gp, gint display);
     gboolean     (* protocol_plugin_close_connection)     (RemminaProtocolWidget *gp);
-    gint         (* protocol_plugin_init_authpwd)         (RemminaProtocolWidget *gp, RemminaAuthpwdType authpwd_type);
-    gint         (* protocol_plugin_init_authuserpwd)     (RemminaProtocolWidget *gp, gboolean want_domain);
+    gint         (* protocol_plugin_init_authpwd)         (RemminaProtocolWidget *gp, RemminaAuthpwdType authpwd_type, gboolean allow_password_saving);
+    gint         (* protocol_plugin_init_authuserpwd)     (RemminaProtocolWidget *gp, gboolean want_domain, gboolean allow_password_saving);
     gint         (* protocol_plugin_init_certificate)     (RemminaProtocolWidget *gp, const gchar* subject, const gchar* issuer, const gchar* fingerprint);
     gint         (* protocol_plugin_changed_certificate)  (RemminaProtocolWidget *gp, const gchar* subject, const gchar* issuer, const gchar* new_fingerprint, const gchar* old_fingerprint);
     gchar*       (* protocol_plugin_init_get_username)    (RemminaProtocolWidget *gp);
@@ -192,6 +195,7 @@ typedef struct _RemminaPluginService
                                                            void(*on_destroy)(RemminaProtocolWidget *gp));
     void         (* protocol_plugin_chat_close)           (RemminaProtocolWidget *gp);
     void         (* protocol_plugin_chat_receive)         (RemminaProtocolWidget *gp, const gchar *text);
+    void         (* protocol_plugin_send_keys_signals)    (GtkWidget *widget, const guint *keyvals, int length, GdkEventType action);
 
     RemminaFile* (* file_new)                             (void);
     const gchar* (* file_get_path)                        (RemminaFile *remminafile);
@@ -206,6 +210,8 @@ typedef struct _RemminaPluginService
     gchar*       (* pref_get_value)                       (const gchar *key);
     gint         (* pref_get_scale_quality)               (void);
     gint         (* pref_get_sshtunnel_port)              (void);
+    gint         (* pref_get_ssh_loglevel)                (void);
+    gboolean     (* pref_get_ssh_parseconfig)             (void);
     guint        (* pref_keymap_get_keyval)               (const gchar *keymap, guint keyval);
 
     void         (* log_print)                            (const gchar *text);
@@ -215,6 +221,8 @@ typedef struct _RemminaPluginService
 
     GtkWidget*   (* open_connection)                      (RemminaFile *remminafile, GCallback disconnect_cb, gpointer data, guint *handler);
     void         (* get_server_port)                      (const gchar *server, gint defaultport, gchar **host, gint *port);
+    gboolean     (* is_main_thread)                       (void);
+
 } RemminaPluginService;
 
 /* "Prototype" of the plugin entry function */
