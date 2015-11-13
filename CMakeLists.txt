@@ -93,6 +93,11 @@ set(GTK_VERSION 3)
 find_required_package(GTK)
 find_required_package(PTHREAD)
 
+set(REMMINA_COMMON_INCLUDE_DIRS ${GTK_INCLUDE_DIRS})
+set(REMMINA_COMMON_LIBRARIES ${GTK_LIBRARIES} ${PTHREAD_LIBRARY})
+
+include_directories(${REMMINA_COMMON_INCLUDE_DIRS})
+
 if(WITH_TRACE_CALLS)
 	message(STATUS "Enabling trace calls.")
 	add_definitions(-DWITH_TRACE_CALLS)
