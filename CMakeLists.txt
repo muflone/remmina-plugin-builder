@@ -104,8 +104,6 @@ if(WITH_TRACE_CALLS)
 	add_definitions(-DWITH_TRACE_CALLS)
 endif()
 
-if(GTK_FOUND)
-  add_subdirectory(remmina-plugin-to-build)
-endif()
+add_subdirectory(remmina-plugin-to-build)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_SOURCE_DIR}/config.h)
