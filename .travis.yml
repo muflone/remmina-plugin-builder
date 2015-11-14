@@ -10,8 +10,9 @@ addons:
     - libgtk-3-dev                            # GTK+ 3
 install:
   - echo install
-  - cp -r remmina-plugin-dummy/* remmina-plugin-to-build
+  - cp --verbose --recursive remmina-plugin-dummy/* remmina-plugin-to-build
 script:
   - echo script
   - cmake -DCMAKE_INSTALL_PREFIX=/usr -DWITH_TRACE_CALLS=1 .
   - make
+  - make install
