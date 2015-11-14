@@ -1,0 +1,13 @@
+language: c
+compiler:
+  - gcc
+sudo: false
+addons:
+  apt:
+    packages:
+    - cmake                                   # CMake
+script:
+  - cmake -DCMAKE_INSTALL_PREFIX=/usr -DWITH_TRACE_CALLS=1 .
+  - make
+install:
+  - make install
