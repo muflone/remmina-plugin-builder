@@ -7,7 +7,8 @@ addons:
     packages:
     - cmake                                   # CMake
     - libgtk-3-dev                            # GTK+ 3
-script:
+install:
   - touch remmina-plugin-to-build/CMakeLists.txt
+script:
   - cmake -DCMAKE_INSTALL_PREFIX=/usr -DWITH_TRACE_CALLS=1 .
   - make
