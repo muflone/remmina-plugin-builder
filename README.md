@@ -1,4 +1,4 @@
-remmina-plugin-builder
+remmina-plugin-builder [![Build Status](https://travis-ci.org/muflone/remmina-plugin-builder.svg?branch=master)](https://travis-ci.org/muflone/remmina-plugin-builder)
 ======================
 
 Remmina minimal build environment for plugins.
