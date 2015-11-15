@@ -76,6 +76,8 @@ typedef enum
     REMMINA_PROTOCOL_SETTING_TYPE_RESOLUTION,
     REMMINA_PROTOCOL_SETTING_TYPE_KEYMAP,
 #ifdef REMMINA_VER_1_1
+    /* Remmina 1.2 has removed the value REMMINA_PROTOCOL_SETTING_TYPE_SCALE,
+     * decrementing by 1 all the next values. */
     REMMINA_PROTOCOL_SETTING_TYPE_SCALE,
 #endif
     REMMINA_PROTOCOL_SETTING_TYPE_TEXT,
