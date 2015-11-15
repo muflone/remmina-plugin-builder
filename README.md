@@ -9,3 +9,9 @@ and compile it using:
     cmake -DCMAKE_INSTALL_PREFIX=/usr .
     make
     make DESTDIR=/destination_path install
+
+To build a plugin for Remmina 1.1 and older versions use this:
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DREMMINA_VER_1_1=ON .
+    make
+    make DESTDIR=/destination_path install
