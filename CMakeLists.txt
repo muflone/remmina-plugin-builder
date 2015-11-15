@@ -104,6 +104,11 @@ if(WITH_TRACE_CALLS)
 	add_definitions(-DWITH_TRACE_CALLS)
 endif()
 
+if(REMMINA_VER_1_1)
+	message(STATUS "Setup for Remmina 1.1 and older.")
+	add_definitions(-DREMMINA_VER_1_1)
+endif()
+
 add_subdirectory(remmina-plugin-to-build)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_SOURCE_DIR}/config.h)
