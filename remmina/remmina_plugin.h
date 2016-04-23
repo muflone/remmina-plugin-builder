@@ -1,7 +1,7 @@
 /*
  * Remmina - The GTK+ Remote Desktop Client
  * Copyright (C) 2010 Vic Lee 
- * Copyright (C) 2014-2015 Antenore Gatta, Fabio Castelli, Giovanni Panozzo
+ * Copyright (C) 2014-2016 Antenore Gatta, Fabio Castelli, Giovanni Panozzo
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,22 +47,22 @@
 #include <signal.h>
 #include <pthread.h>
 #ifdef HAVE_NETDB_H
-#include <netdb.h>
+  #include <netdb.h>
 #endif
 #ifdef HAVE_ARPA_INET_H
-#include <arpa/inet.h>
+  #include <arpa/inet.h>
 #endif
 #ifdef HAVE_NETINET_IN_H
-#include <netinet/in.h>
+  #include <netinet/in.h>
 #endif
 #ifdef HAVE_SYS_SOCKET_H
-#include <sys/socket.h>
+  #include <sys/socket.h>
 #endif
 #ifdef HAVE_FCNTL_H
-#include <fcntl.h>
+  #include <fcntl.h>
 #endif
 #ifdef HAVE_ERRNO_H
-#include <errno.h>
+  #include <errno.h>
 #endif
 #include "remmina/remmina_trace_calls.h"
 

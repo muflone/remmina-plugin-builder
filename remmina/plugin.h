@@ -1,7 +1,7 @@
 /*
  * Remmina - The GTK+ Remote Desktop Client
  * Copyright (C) 2010-2011 Vic Lee
- * Copyright (C) 2014-2015 Antenore Gatta, Fabio Castelli, Giovanni Panozzo
+ * Copyright (C) 2014-2016 Antenore Gatta, Fabio Castelli, Giovanni Panozzo
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -81,7 +81,9 @@ typedef struct _RemminaProtocolPlugin
     gboolean (* query_feature) (RemminaProtocolWidget *gp, const RemminaProtocolFeature *feature);
     void (* call_feature) (RemminaProtocolWidget *gp, const RemminaProtocolFeature *feature);
     void (* send_keystrokes) (RemminaProtocolWidget *gp, const guint keystrokes[], const gint keylen);
+#ifndef REMMINA_VER_1_1
     gboolean (* get_plugin_screenshot)(RemminaProtocolWidget *gp, RemminaPluginScreenshotData *rpsd);
+#endif
 } RemminaProtocolPlugin;
 
 typedef struct _RemminaEntryPlugin
@@ -133,6 +135,7 @@ typedef struct _RemminaPrefPlugin
     GtkWidget* (* get_pref_body) (void);
 } RemminaPrefPlugin;
 
+#ifndef REMMINA_VER_1_1
 typedef struct _RemminaSecretPlugin
 {
     RemminaPluginType type;
@@ -146,6 +149,7 @@ typedef struct _RemminaSecretPlugin
     gchar* (* get_password) (RemminaFile *remminafile, const gchar *key);
     void (* delete_password) (RemminaFile *remminafile, const gchar *key);
 } RemminaSecretPlugin;
+#endif
 
 /* Plugin Service is a struct containing a list of function pointers,
  * which is passed from Remmina main program to the plugin module
@@ -197,9 +201,9 @@ typedef struct _RemminaPluginService
     void         (* protocol_plugin_chat_close)           (RemminaProtocolWidget *gp);
     void         (* protocol_plugin_chat_receive)         (RemminaProtocolWidget *gp, const gchar *text);
     void         (* protocol_plugin_send_keys_signals)    (GtkWidget *widget, const guint *keyvals, int length, GdkEventType action);
-
+#ifndef REMMINA_VER_1_1
     gchar*       (* file_get_user_datadir)                (void);
-
+#endif
     RemminaFile* (* file_new)                             (void);
     const gchar* (* file_get_path)                        (RemminaFile *remminafile);
     void         (* file_set_string)                      (RemminaFile *remminafile, const gchar *setting, const gchar *value);
