@@ -38,7 +38,7 @@ cmake_minimum_required(VERSION 3.0.0)
 
 set(CMAKE_COLOR_MAKEFILE ON)
 
-set(REMMINA_PLUGIN_BUILDER_VERSION "1.3")
+set(REMMINA_PLUGIN_BUILDER_VERSION "1.3.0.0")
 message(STATUS "Remmina Plugin Builder, version ${REMMINA_PLUGIN_BUILDER_VERSION}")
 
 project(Remmina C CXX)
