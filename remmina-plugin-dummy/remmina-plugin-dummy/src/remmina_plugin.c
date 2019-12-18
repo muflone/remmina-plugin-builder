@@ -22,26 +22,44 @@
 #include "plugin_config.h"
 #include <remmina/remmina_plugin.h>
 
+typedef struct
+{
+  GtkTextView *text_view;
+  GtkTextBuffer *text_buffer;
+} RemminaPluginData;
+
 static RemminaPluginService *remmina_plugin_service = NULL;
 
 static void remmina_plugin_dummy_init(RemminaProtocolWidget *gp)
 {
   TRACE_CALL(__func__);
+  RemminaPluginData *gpdata;
   remmina_plugin_service->log_printf("[%s] Plugin init\n", PLUGIN_NAME);
+  /* Instance log window widgets */
+  gpdata = g_new0(RemminaPluginData, 1);
+  gpdata->text_view = GTK_TEXT_VIEW(gtk_text_view_new());
+  gtk_text_view_set_editable(gpdata->text_view, FALSE);
+  gtk_container_add(GTK_CONTAINER(gp), GTK_WIDGET(gpdata->text_view));
+  gpdata->text_buffer = gtk_text_view_get_buffer(gpdata->text_view);
+  gtk_text_buffer_set_text(gpdata->text_buffer, PLUGIN_DESCRIPTION, -1);
+  gtk_widget_show(GTK_WIDGET(gpdata->text_view));
+  /* Save reference to plugin data */
+  g_object_set_data_full(G_OBJECT(gp), "plugin-data", gpdata, g_free);
 }
 
 static gboolean remmina_plugin_dummy_open_connection(RemminaProtocolWidget *gp)
 {
   TRACE_CALL(__func__);
   remmina_plugin_service->log_printf("[%s] Plugin open connection\n", PLUGIN_NAME);
-  return FALSE;
+  remmina_plugin_service->protocol_plugin_signal_connection_opened(gp);
+  return TRUE;
 }
 
 static gboolean remmina_plugin_dummy_close_connection(RemminaProtocolWidget *gp)
 {
   TRACE_CALL(__func__);
   remmina_plugin_service->log_printf("[%s] Plugin close connection\n", PLUGIN_NAME);
-  remmina_plugin_service->protocol_plugin_emit_signal(gp, "disconnect");
+  remmina_plugin_service->protocol_plugin_signal_connection_closed(gp);
   return FALSE;
 }
 
