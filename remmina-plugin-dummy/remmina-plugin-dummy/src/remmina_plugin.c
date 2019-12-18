@@ -22,16 +22,15 @@
 #include "plugin_config.h"
 #include <remmina/remmina_plugin.h>
 
-typedef struct
-{
+typedef struct {
   GtkTextView *text_view;
   GtkTextBuffer *text_buffer;
 } RemminaPluginData;
 
 static RemminaPluginService *remmina_plugin_service = NULL;
 
-static void remmina_plugin_dummy_init(RemminaProtocolWidget *gp)
-{
+/* Initialize plugin */
+static void remmina_plugin_dummy_init(RemminaProtocolWidget *gp) {
   TRACE_CALL(__func__);
   RemminaPluginData *gpdata;
   remmina_plugin_service->log_printf("[%s] Plugin init\n", PLUGIN_NAME);
@@ -47,16 +46,16 @@ static void remmina_plugin_dummy_init(RemminaProtocolWidget *gp)
   g_object_set_data_full(G_OBJECT(gp), "plugin-data", gpdata, g_free);
 }
 
-static gboolean remmina_plugin_dummy_open_connection(RemminaProtocolWidget *gp)
-{
+/* Open connection */
+static gboolean remmina_plugin_dummy_open_connection(RemminaProtocolWidget *gp) {
   TRACE_CALL(__func__);
   remmina_plugin_service->log_printf("[%s] Plugin open connection\n", PLUGIN_NAME);
   remmina_plugin_service->protocol_plugin_signal_connection_opened(gp);
   return TRUE;
 }
 
-static gboolean remmina_plugin_dummy_close_connection(RemminaProtocolWidget *gp)
-{
+/* Close connection */
+static gboolean remmina_plugin_dummy_close_connection(RemminaProtocolWidget *gp) {
   TRACE_CALL(__func__);
   remmina_plugin_service->log_printf("[%s] Plugin close connection\n", PLUGIN_NAME);
   remmina_plugin_service->protocol_plugin_signal_connection_closed(gp);
@@ -72,14 +71,12 @@ static gboolean remmina_plugin_dummy_close_connection(RemminaProtocolWidget *gp)
  * e) Values for REMMINA_PROTOCOL_SETTING_TYPE_SELECT or REMMINA_PROTOCOL_SETTING_TYPE_COMBO
  * f) Setting tooltip
  */
-static const RemminaProtocolSetting remmina_plugin_dummy_basic_settings[] =
-{
+static const RemminaProtocolSetting remmina_plugin_dummy_basic_settings[] = {
   { REMMINA_PROTOCOL_SETTING_TYPE_END, NULL, NULL, FALSE, NULL, NULL }
 };
 
 /* Protocol plugin definition and features */
-static RemminaProtocolPlugin remmina_plugin =
-{
+static RemminaProtocolPlugin remmina_plugin = {
   REMMINA_PLUGIN_TYPE_PROTOCOL,                 // Type
   PLUGIN_NAME,                                  // Name
   PLUGIN_DESCRIPTION,                           // Description
@@ -100,13 +97,11 @@ static RemminaProtocolPlugin remmina_plugin =
   NULL                                          // Screenshot support
 };
 
-G_MODULE_EXPORT gboolean remmina_plugin_entry(RemminaPluginService *service)
-{
+G_MODULE_EXPORT gboolean remmina_plugin_entry(RemminaPluginService *service) {
   TRACE_CALL(__func__);
   remmina_plugin_service = service;
 
-  if (!service->register_plugin((RemminaPlugin *) &remmina_plugin))
-  {
+  if (!service->register_plugin((RemminaPlugin *) &remmina_plugin)) {
     return FALSE;
   }
   return TRUE;
