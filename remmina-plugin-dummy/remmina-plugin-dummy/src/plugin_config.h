@@ -19,11 +19,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __PLUGIN_CONFIG_H
-  #define __PLUGIN_CONFIG_H
+#pragma once
 
-  #define PLUGIN_NAME        "DUMMY"
-  #define PLUGIN_DESCRIPTION "DUMMY - Dummy protocol plugin"
-  #define PLUGIN_VERSION     "1.0.0.0"
-  #define PLUGIN_APPICON     "remmina-dummy"
-#endif
+#define PLUGIN_NAME        "DUMMY"
+#define PLUGIN_DESCRIPTION "DUMMY - Dummy protocol plugin"
+#define PLUGIN_VERSION     "1.0.0.0"
+#define PLUGIN_APPICON     "remmina-dummy"
