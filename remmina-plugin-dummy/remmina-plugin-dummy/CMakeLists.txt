@@ -1,7 +1,7 @@
 #     Project: Remmina Plugin DUMMY
 # Description: Remmina dummy protocol plugin.
-#      Author: Fabio Castelli (Muflone) <muflone@vbsimple.net>
-#   Copyright: 2016 Fabio Castelli (Muflone)
+#      Author: Fabio Castelli (Muflone) <muflone@muflone.com>
+#   Copyright: 2016-2019 Fabio Castelli (Muflone)
 #     License: GPL-2+
 #
 # This program is free software; you can redistribute it and/or modify
