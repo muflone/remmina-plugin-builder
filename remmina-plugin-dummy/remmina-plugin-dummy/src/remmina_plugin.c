@@ -55,7 +55,7 @@ static gboolean remmina_plugin_dummy_close_connection(RemminaProtocolWidget *gp)
  * c) Setting description
  * d) Compact disposition
  * e) Values for REMMINA_PROTOCOL_SETTING_TYPE_SELECT or REMMINA_PROTOCOL_SETTING_TYPE_COMBO
- * f) Unused pointer
+ * f) Setting tooltip
  */
 static const RemminaProtocolSetting remmina_plugin_dummy_basic_settings[] =
 {
@@ -81,7 +81,8 @@ static RemminaProtocolPlugin remmina_plugin =
   remmina_plugin_dummy_close_connection,        // Plugin close connection
   NULL,                                         // Query for available features
   NULL,                                         // Call a feature
-  NULL                                          // Send a keystroke
+  NULL,                                         // Send a keystroke
+  NULL                                          // Screenshot support
 };
 
 G_MODULE_EXPORT gboolean remmina_plugin_entry(RemminaPluginService *service)

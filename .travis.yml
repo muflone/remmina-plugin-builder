@@ -16,6 +16,5 @@ script:
   - cmake .
     -DCMAKE_INSTALL_PREFIX=install_dir
     -DWITH_TRACE_CALLS=ON
-    -DREMMINA_VER_1_1=OFF
   - make
   - make install
