@@ -2,7 +2,7 @@
  * Remmina - The GTK+ Remote Desktop Client
  * Copyright (C) 2010 Vic Lee
  * Copyright (C) 2014-2015 Antenore Gatta, Fabio Castelli, Giovanni Panozzo
- * Copyright (C) 2016-2019 Antenore Gatta, Giovanni Panozzo
+ * Copyright (C) 2016-2021 Antenore Gatta, Giovanni Panozzo
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,8 @@
 
 #pragma once
 
+#include <glib.h>
+
 G_BEGIN_DECLS
 
 typedef struct _RemminaFile RemminaFile;
@@ -47,6 +49,7 @@ typedef enum {
 	REMMINA_PROTOCOL_FEATURE_TYPE_UNFOCUS,
 	REMMINA_PROTOCOL_FEATURE_TYPE_SCALE,
 	REMMINA_PROTOCOL_FEATURE_TYPE_DYNRESUPDATE,
+	REMMINA_PROTOCOL_FEATURE_TYPE_MULTIMON,
 	REMMINA_PROTOCOL_FEATURE_TYPE_GTKSOCKET
 } RemminaProtocolFeatureType;
 
@@ -84,6 +87,7 @@ typedef enum {
 	REMMINA_PROTOCOL_SETTING_TYPE_KEYMAP,
 
 	REMMINA_PROTOCOL_SETTING_TYPE_TEXT,
+	REMMINA_PROTOCOL_SETTING_TYPE_TEXTAREA,
 	REMMINA_PROTOCOL_SETTING_TYPE_SELECT,
 	REMMINA_PROTOCOL_SETTING_TYPE_COMBO,
 	REMMINA_PROTOCOL_SETTING_TYPE_CHECK,
@@ -96,8 +100,8 @@ typedef struct _RemminaProtocolSetting {
 	const gchar *			name;
 	const gchar *			label;
 	gboolean			compact;
-	const gpointer			opt1;
-	const gpointer			opt2;
+	gpointer			opt1;
+	gpointer			opt2;
 } RemminaProtocolSetting;
 
 typedef enum {
@@ -130,8 +134,10 @@ typedef enum {
 /* pflags field for remmina_protocol_widget_panel_auth() */
 typedef enum {
 	REMMINA_MESSAGE_PANEL_FLAG_USERNAME	= 1,    /* require username in auth panel */
-	REMMINA_MESSAGE_PANEL_FLAG_DOMAIN	= 2,    /* require domain in auth panel */
-	REMMINA_MESSAGE_PANEL_FLAG_SAVEPASSWORD = 4     /* require savepassword switch in auth panel */
+	REMMINA_MESSAGE_PANEL_FLAG_USERNAME_READONLY	= 2,    /* Username, if required, is readonly */
+	REMMINA_MESSAGE_PANEL_FLAG_DOMAIN	= 4,    /* require domain in auth panel */
+	REMMINA_MESSAGE_PANEL_FLAG_SAVEPASSWORD = 8     /* require savepassword switch in auth panel */
+
 } RemminaMessagePanelFlags;
 
 G_END_DECLS

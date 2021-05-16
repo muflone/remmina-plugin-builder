@@ -2,7 +2,7 @@
  * Remmina - The GTK+ Remote Desktop Client
  * Copyright (C) 2010-2011 Vic Lee
  * Copyright (C) 2014-2015 Antenore Gatta, Fabio Castelli, Giovanni Panozzo
- * Copyright (C) 2016-2019 Antenore Gatta, Giovanni Panozzo
+ * Copyright (C) 2016-2021 Antenore Gatta, Giovanni Panozzo
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@
 
 #pragma once
 
+#include <stdarg.h>
 #include <remmina/types.h>
 #include "remmina/remmina_trace_calls.h"
 
@@ -58,6 +59,7 @@ typedef struct _RemminaPlugin {
 	const gchar *		version;
 } RemminaPlugin;
 
+typedef struct _RemminaProtocolPlugin _RemminaProtocolPlugin;
 typedef struct _RemminaProtocolPlugin {
 	RemminaPluginType		type;
 	const gchar *			name;
@@ -79,6 +81,8 @@ typedef struct _RemminaProtocolPlugin {
 	void (*call_feature)(RemminaProtocolWidget *gp, const RemminaProtocolFeature *feature);
 	void (*send_keystrokes)(RemminaProtocolWidget *gp, const guint keystrokes[], const gint keylen);
 	gboolean (*get_plugin_screenshot)(RemminaProtocolWidget *gp, RemminaPluginScreenshotData *rpsd);
+	gboolean (*map_event)(RemminaProtocolWidget *gp);
+	gboolean (*unmap_event)(RemminaProtocolWidget *gp);
 } RemminaProtocolPlugin;
 
 typedef struct _RemminaEntryPlugin {
@@ -167,6 +171,7 @@ typedef struct _RemminaPluginService {
 	void (*protocol_plugin_signal_connection_closed)(RemminaProtocolWidget *gp);
 	void (*protocol_plugin_signal_connection_opened)(RemminaProtocolWidget *gp);
 	void (*protocol_plugin_update_align)(RemminaProtocolWidget *gp);
+	void (*protocol_plugin_lock_dynres)(RemminaProtocolWidget *gp);
 	void (*protocol_plugin_unlock_dynres)(RemminaProtocolWidget *gp);
 	void (*protocol_plugin_desktop_resize)(RemminaProtocolWidget *gp);
 	gint (*protocol_plugin_init_auth)(RemminaProtocolWidget *gp, RemminaMessagePanelFlags pflags, const gchar *title, const gchar *default_username, const gchar *default_password, const gchar *default_domain, const gchar *password_prompt);
@@ -211,12 +216,14 @@ typedef struct _RemminaPluginService {
 	gboolean (*pref_get_ssh_parseconfig)(void);
 	guint (*pref_keymap_get_keyval)(const gchar *keymap, guint keyval);
 
+	void (*_remmina_debug)(const gchar *func, const gchar *fmt, ...);
 	void (*log_print)(const gchar *text);
 	void (*log_printf)(const gchar *fmt, ...);
 
 	void (*ui_register)(GtkWidget *widget);
 
 	GtkWidget *   (*open_connection)(RemminaFile * remminafile, GCallback disconnect_cb, gpointer data, guint *handler);
+	gint (*open_unix_sock)(const char *unixsock);
 	void (*get_server_port)(const gchar *server, gint defaultport, gchar **host, gint *port);
 	gboolean (*is_main_thread)(void);
 	gboolean (*gtksocket_available)(void);
