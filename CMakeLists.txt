@@ -268,8 +268,8 @@ if(SNAP_BUILD)
 endif()
 
 set(GTK_VERSION 3)
-find_required_package(GTK)
-set(REMMINA_COMMON_INCLUDE_DIRS ${GTK_INCLUDE_DIRS})
+find_required_package(GTK3)
+set(REMMINA_COMMON_INCLUDE_DIRS ${GTK3_INCLUDE_DIRS})
 include_directories(${REMMINA_COMMON_INCLUDE_DIRS})
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
@@ -301,9 +301,7 @@ if(WITH_TRACE_CALLS)
     add_definitions(-DWITH_TRACE_CALLS)
 endif()
 
-if(GTK_FOUND)
-    pkg_check_modules(gio REQUIRED gio-2.0)
-    pkg_check_modules(gio-unix REQUIRED gio-unix-2.0)
+if(GTK3_FOUND)
     add_subdirectory(remmina-plugin-to-build)
 endif()
 
