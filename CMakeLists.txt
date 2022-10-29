@@ -41,7 +41,7 @@ set(CMAKE_COLOR_MAKEFILE ON)
 set(REMMINA_PLUGIN_BUILDER_VERSION "1.4.27.0")
 message(STATUS "Remmina Plugin Builder, version ${REMMINA_PLUGIN_BUILDER_VERSION}")
 
-project(Remmina C CXX)
+project(RemminaPluginBuilder C CXX)
 
 include(CheckCCompilerFlag)
 include(CheckIncludeFiles)
