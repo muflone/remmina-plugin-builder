@@ -1,1 +1,7 @@
-/snapshots/
+# Jetbrains IDE
+.idea/
+cmake-build-debug/
+
+# Automatically generated files
+buildflags.h
+config.h
