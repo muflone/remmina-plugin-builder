@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/base
+      - image: cimg/base:current
 
     working_directory: ~/repo
 
