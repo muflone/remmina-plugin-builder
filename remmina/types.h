@@ -44,14 +44,14 @@ G_BEGIN_DECLS
 typedef struct _RemminaFile RemminaFile;
 
 typedef enum {
-	REMMINA_PROTOCOL_FEATURE_TYPE_END,
-	REMMINA_PROTOCOL_FEATURE_TYPE_PREF,
-	REMMINA_PROTOCOL_FEATURE_TYPE_TOOL,
-	REMMINA_PROTOCOL_FEATURE_TYPE_UNFOCUS,
-	REMMINA_PROTOCOL_FEATURE_TYPE_SCALE,
-	REMMINA_PROTOCOL_FEATURE_TYPE_DYNRESUPDATE,
-	REMMINA_PROTOCOL_FEATURE_TYPE_MULTIMON,
-	REMMINA_PROTOCOL_FEATURE_TYPE_GTKSOCKET
+    REMMINA_PROTOCOL_FEATURE_TYPE_END,
+    REMMINA_PROTOCOL_FEATURE_TYPE_PREF,
+    REMMINA_PROTOCOL_FEATURE_TYPE_TOOL,
+    REMMINA_PROTOCOL_FEATURE_TYPE_UNFOCUS,
+    REMMINA_PROTOCOL_FEATURE_TYPE_SCALE,
+    REMMINA_PROTOCOL_FEATURE_TYPE_DYNRESUPDATE,
+    REMMINA_PROTOCOL_FEATURE_TYPE_MULTIMON,
+    REMMINA_PROTOCOL_FEATURE_TYPE_GTKSOCKET
 } RemminaProtocolFeatureType;
 
 #define REMMINA_PROTOCOL_FEATURE_PREF_RADIO 1
@@ -70,22 +70,22 @@ typedef enum
 } RemminaTypeHint;
 
 typedef struct _RemminaProtocolFeature {
-	RemminaProtocolFeatureType	type;
-	gint				id;
-	gpointer			opt1;
-	gpointer			opt2;
-	gpointer			opt3;
-    	RemminaTypeHint     		opt1_type_hint;
-    	RemminaTypeHint     		opt2_type_hint;
-    	RemminaTypeHint     		opt3_type_hint;
+    RemminaProtocolFeatureType	type;
+    gint				id;
+    gpointer			opt1;
+    gpointer			opt2;
+    gpointer			opt3;
+    RemminaTypeHint     		opt1_type_hint;
+    RemminaTypeHint     		opt2_type_hint;
+    RemminaTypeHint     		opt3_type_hint;
 } RemminaProtocolFeature;
 
 typedef struct _RemminaPluginScreenshotData {
-	unsigned char * buffer;
-	int		bitsPerPixel;
-	int		bytesPerPixel;
-	int		width;
-	int		height;
+    unsigned char * buffer;
+    int		bitsPerPixel;
+    int		bytesPerPixel;
+    int		width;
+    int		height;
 } RemminaPluginScreenshotData;
 
 
@@ -95,69 +95,68 @@ typedef gpointer RemminaTunnelInitFunc;
 typedef gboolean (*RemminaXPortTunnelInitFunc) (RemminaProtocolWidget *gp, gint remotedisplay, const gchar *server, gint port);
 
 typedef enum {
-	REMMINA_PROTOCOL_SETTING_TYPE_END,
+    REMMINA_PROTOCOL_SETTING_TYPE_END,
 
-	REMMINA_PROTOCOL_SETTING_TYPE_SERVER,
-	REMMINA_PROTOCOL_SETTING_TYPE_PASSWORD,
-	REMMINA_PROTOCOL_SETTING_TYPE_RESOLUTION,
-	REMMINA_PROTOCOL_SETTING_TYPE_ASSISTANCE,
-	REMMINA_PROTOCOL_SETTING_TYPE_KEYMAP,
+    REMMINA_PROTOCOL_SETTING_TYPE_SERVER,
+    REMMINA_PROTOCOL_SETTING_TYPE_PASSWORD,
+    REMMINA_PROTOCOL_SETTING_TYPE_RESOLUTION,
+    REMMINA_PROTOCOL_SETTING_TYPE_KEYMAP,
 
-	REMMINA_PROTOCOL_SETTING_TYPE_TEXT,
-	REMMINA_PROTOCOL_SETTING_TYPE_TEXTAREA,
-	REMMINA_PROTOCOL_SETTING_TYPE_SELECT,
-	REMMINA_PROTOCOL_SETTING_TYPE_COMBO,
-	REMMINA_PROTOCOL_SETTING_TYPE_CHECK,
-	REMMINA_PROTOCOL_SETTING_TYPE_FILE,
-	REMMINA_PROTOCOL_SETTING_TYPE_FOLDER,
-	REMMINA_PROTOCOL_SETTING_TYPE_INT,
-	REMMINA_PROTOCOL_SETTING_TYPE_DOUBLE
+    REMMINA_PROTOCOL_SETTING_TYPE_TEXT,
+    REMMINA_PROTOCOL_SETTING_TYPE_TEXTAREA,
+    REMMINA_PROTOCOL_SETTING_TYPE_SELECT,
+    REMMINA_PROTOCOL_SETTING_TYPE_COMBO,
+    REMMINA_PROTOCOL_SETTING_TYPE_CHECK,
+    REMMINA_PROTOCOL_SETTING_TYPE_FILE,
+    REMMINA_PROTOCOL_SETTING_TYPE_FOLDER,
+    REMMINA_PROTOCOL_SETTING_TYPE_INT,
+    REMMINA_PROTOCOL_SETTING_TYPE_DOUBLE
 } RemminaProtocolSettingType;
 
 typedef struct _RemminaProtocolSetting {
-	RemminaProtocolSettingType	type;
-	const gchar *			name;
-	const gchar *			label;
-	gboolean			compact;
-	gpointer			opt1;
-	gpointer			opt2;
-	gpointer			validator_data;
-	GCallback			validator;
+    RemminaProtocolSettingType	type;
+    const gchar *			name;
+    const gchar *			label;
+    gboolean			compact;
+    gpointer			opt1;
+    gpointer			opt2;
+    gpointer			validator_data;
+    GCallback			validator;
 } RemminaProtocolSetting;
 
 typedef enum {
-	REMMINA_PROTOCOL_SSH_SETTING_NONE,
-	REMMINA_PROTOCOL_SSH_SETTING_TUNNEL,
-	REMMINA_PROTOCOL_SSH_SETTING_SSH,
-	REMMINA_PROTOCOL_SSH_SETTING_REVERSE_TUNNEL,
-	REMMINA_PROTOCOL_SSH_SETTING_SFTP
+    REMMINA_PROTOCOL_SSH_SETTING_NONE,
+    REMMINA_PROTOCOL_SSH_SETTING_TUNNEL,
+    REMMINA_PROTOCOL_SSH_SETTING_SSH,
+    REMMINA_PROTOCOL_SSH_SETTING_REVERSE_TUNNEL,
+    REMMINA_PROTOCOL_SSH_SETTING_SFTP
 } RemminaProtocolSSHSetting;
 
 typedef enum {
-	REMMINA_AUTHPWD_TYPE_PROTOCOL,
-	REMMINA_AUTHPWD_TYPE_SSH_PWD,
-	REMMINA_AUTHPWD_TYPE_SSH_PRIVKEY
+    REMMINA_AUTHPWD_TYPE_PROTOCOL,
+    REMMINA_AUTHPWD_TYPE_SSH_PWD,
+    REMMINA_AUTHPWD_TYPE_SSH_PRIVKEY
 } RemminaAuthpwdType;
 
 typedef enum {
-	REMMINA_PROTOCOL_WIDGET_SCALE_MODE_NONE		= 0,
-	REMMINA_PROTOCOL_WIDGET_SCALE_MODE_SCALED	= 1,
-	REMMINA_PROTOCOL_WIDGET_SCALE_MODE_DYNRES	= 2
+    REMMINA_PROTOCOL_WIDGET_SCALE_MODE_NONE		= 0,
+    REMMINA_PROTOCOL_WIDGET_SCALE_MODE_SCALED	= 1,
+    REMMINA_PROTOCOL_WIDGET_SCALE_MODE_DYNRES	= 2
 } RemminaScaleMode;
 
 typedef enum {
-	RES_INVALID			= -1,
-	RES_USE_CUSTOM			= 0,
-	RES_USE_CLIENT			= 1,
-	RES_USE_INITIAL_WINDOW_SIZE	= 2
+    RES_INVALID			= -1,
+    RES_USE_CUSTOM			= 0,
+    RES_USE_CLIENT			= 1,
+    RES_USE_INITIAL_WINDOW_SIZE	= 2
 } RemminaProtocolWidgetResolutionMode;
 
 /* pflags field for remmina_protocol_widget_panel_auth() */
 typedef enum {
-	REMMINA_MESSAGE_PANEL_FLAG_USERNAME	= 1,    /* require username in auth panel */
-	REMMINA_MESSAGE_PANEL_FLAG_USERNAME_READONLY	= 2,    /* Username, if required, is readonly */
-	REMMINA_MESSAGE_PANEL_FLAG_DOMAIN	= 4,    /* require domain in auth panel */
-	REMMINA_MESSAGE_PANEL_FLAG_SAVEPASSWORD = 8     /* require savepassword switch in auth panel */
+    REMMINA_MESSAGE_PANEL_FLAG_USERNAME	= 1,    /* require username in auth panel */
+    REMMINA_MESSAGE_PANEL_FLAG_USERNAME_READONLY	= 2,    /* Username, if required, is readonly */
+    REMMINA_MESSAGE_PANEL_FLAG_DOMAIN	= 4,    /* require domain in auth panel */
+    REMMINA_MESSAGE_PANEL_FLAG_SAVEPASSWORD = 8     /* require savepassword switch in auth panel */
 
 } RemminaMessagePanelFlags;
 
