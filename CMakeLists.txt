@@ -3,7 +3,7 @@
 # Copyright (C) 2011 Marc-Andre Moreau
 # Copyright (C) 2014-2015 Antenore Gatta, Fabio Castelli, Giovanni Panozzo
 # Copyright (C) 2016-2019 Antenore Gatta, Giovanni Panozzo
-# Copyright (C) 2013-2022 Fabio Castelli (Muflone) <muflone@muflone.com>
+# Copyright (C) 2013-2023 Fabio Castelli (Muflone) <muflone@muflone.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
