@@ -5,7 +5,7 @@
 
 **Description:** Remmina minimal build environment for plugins.
 
-**Copyright:** 2013-2023 Fabio Castelli (Muflone) <muflone(at)muflone.com>
+**Copyright:** 2013-2024 Fabio Castelli (Muflone) <muflone(at)muflone.com>
 
 **License:** GPL-2+
 
