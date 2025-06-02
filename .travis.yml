@@ -15,8 +15,6 @@ install:
   - cp --verbose --recursive remmina-plugin-dummy/* remmina-plugin-to-build
 script:
   - echo script
-  - cmake .
-    -DCMAKE_INSTALL_PREFIX=install_dir
-    -DWITH_TRACE_CALLS=ON
-  - make
-  - make install
+  - cmake -DCMAKE_INSTALL_PREFIX=install_dir -DWITH_TRACE_CALLS=ON .
+  - cmake --build .
+  - cmake --install .
