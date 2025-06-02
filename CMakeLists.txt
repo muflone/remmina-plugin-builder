@@ -34,11 +34,11 @@
 # files in the program, then also delete it here.
 
 
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.10.0)
 
 set(CMAKE_COLOR_MAKEFILE ON)
 
-set(REMMINA_PLUGIN_BUILDER_VERSION "1.4.37.0")
+set(REMMINA_PLUGIN_BUILDER_VERSION "1.4.40.0")
 message(STATUS "Remmina Plugin Builder, version ${REMMINA_PLUGIN_BUILDER_VERSION}")
 
 project(RemminaPluginBuilder C CXX)
