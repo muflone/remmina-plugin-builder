@@ -1,6 +1,9 @@
 # Jetbrains IDE
 .idea/
-cmake-build-debug/
+
+# Build example plugin
+remmina-plugin-to-build/CMakeLists.txt
+remmina-plugin-to-build/remmina-plugin-dummy/
 
 # Automatically generated files
 buildflags.h
